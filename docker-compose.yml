@@ -14,3 +14,4 @@ services:
       - db
     volumes:
       - .:/myapp
+      - ./bundle:/usr/local/bundle
