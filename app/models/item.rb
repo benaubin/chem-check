@@ -28,7 +28,7 @@ class Item < ApplicationRecord
   end
 
   def measurement
-    return 0 if amount == 0
+    return BigDecimal(0) if amount == BigDecimal(0)
     Unitwise(amount, unit)
   end
 

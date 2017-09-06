@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906015843) do
+ActiveRecord::Schema.define(version: 20170906152212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170906015843) do
     t.datetime "checked_out_at"
     t.datetime "checked_in_at"
     t.uuid "item_id"
-    t.integer "usage"
+    t.decimal "usage", precision: 9, scale: 3
     t.citext "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170906015843) do
   create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "sku_id"
     t.string "code"
-    t.integer "amount"
+    t.decimal "amount", precision: 12, scale: 6
     t.citext "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

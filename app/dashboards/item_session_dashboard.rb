@@ -58,7 +58,7 @@ class ItemSessionDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how item sessions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(item_session)
-  #   "ItemSession ##{item_session.id}"
-  # end
+  def display_resource(session)
+    "ItemSession using #{session.usage_measurement} of #{session.item.sku.name}"
+  end
 end

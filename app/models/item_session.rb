@@ -12,12 +12,16 @@ class ItemSession < ApplicationRecord
     Unitwise(usage, unit || item.unit)
   end
 
-  def usage_measurement_was
-    Unitwise(usage_was || 0, unit_was || unit)
+  def usage_measurement_change
+    usage_measurement - usage_measurement_before_last_save
+  end
+
+  def usage_measurement_before_last_save
+    Unitwise(usage_before_last_save || BigDecimal(0), unit_before_last_save || unit)
   end
 
   def usage
-    super || 0
+    super || BigDecimal(0)
   end
 
   def unit
@@ -26,7 +30,7 @@ class ItemSession < ApplicationRecord
 
   def use_item
     return if unit.nil?
-    item.measurement -= (usage_measurement - usage_measurement_was)
+    item.measurement -= usage_measurement_change
     item.save!
   end
 end
