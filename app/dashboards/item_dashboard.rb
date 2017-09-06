@@ -14,6 +14,7 @@ class ItemDashboard < Administrate::BaseDashboard
     code: Field::String,
     amount: Field::Number,
     unit: Field::String,
+    item_sessions: Field::HasMany,
     checked_out?: Field::Boolean,
     measurement: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
@@ -42,6 +43,7 @@ class ItemDashboard < Administrate::BaseDashboard
     :code,
     :barcode,
     :measurement,
+    :item_sessions,
     :created_at,
     :updated_at,
   ].freeze

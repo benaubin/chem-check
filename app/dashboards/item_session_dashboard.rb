@@ -14,6 +14,7 @@ class ItemSessionDashboard < Administrate::BaseDashboard
     checked_in_at: Field::DateTime,
     usage: Field::Number,
     usage_measurement: Field::String,
+    amount_at_end: Field::Number,
     unit: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -40,6 +41,7 @@ class ItemSessionDashboard < Administrate::BaseDashboard
     :checked_out_at,
     :checked_in_at,
     :usage_measurement,
+    :amount_at_end,
     :created_at,
     :updated_at,
   ].freeze
@@ -53,6 +55,7 @@ class ItemSessionDashboard < Administrate::BaseDashboard
     :checked_in_at,
     :usage,
     :unit,
+    :amount_at_end
   ].freeze
 
   # Overwrite this method to customize how item sessions are displayed

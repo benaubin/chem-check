@@ -9,6 +9,8 @@ class Item < ApplicationRecord
 
   has_many :item_sessions
 
+  validates :code, uniqueness: true
+
   class <<self
     def total_amount
       begin
@@ -29,6 +31,8 @@ class Item < ApplicationRecord
 
   def measurement
     return BigDecimal(0) if amount == BigDecimal(0)
+    return nil if unit.empty?
+
     Unitwise(amount, unit)
   end
 
@@ -38,6 +42,6 @@ class Item < ApplicationRecord
   end
 
   def barcode
-    Barby::Code128A.new(self.code)
+    Barby::Code128A.new(self.code.upcase || '')
   end
 end

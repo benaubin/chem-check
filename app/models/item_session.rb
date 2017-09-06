@@ -8,8 +8,17 @@ class ItemSession < ApplicationRecord
 
   validates_uniqueness_of :checked_in_at, scope: :item_id
 
+  def amount_at_end=(end_amount)
+    return false if end_amount.nil? || end_amount.empty?
+    self.usage = BigDecimal(item.amount) - BigDecimal(end_amount)
+  end
+
+  def amount_at_end
+    nil
+  end
+
   def usage_measurement
-    Unitwise(usage, unit || item.unit)
+    Unitwise(usage, unit)
   end
 
   def usage_measurement_change
@@ -17,7 +26,7 @@ class ItemSession < ApplicationRecord
   end
 
   def usage_measurement_before_last_save
-    Unitwise(usage_before_last_save || BigDecimal(0), unit_before_last_save || unit)
+    Unitwise(usage_before_last_save || BigDecimal(0), unit_before_last_save)
   end
 
   def usage
@@ -25,7 +34,13 @@ class ItemSession < ApplicationRecord
   end
 
   def unit
-    super || item.try(:unit)
+    super if super && !super.empty?
+    item.try :unit
+  end
+
+  def unit_before_last_save
+    super if super && !super.empty?
+    item.try :unit
   end
 
   def use_item
