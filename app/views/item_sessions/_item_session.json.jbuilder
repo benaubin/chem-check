@@ -1,0 +1,1 @@
+json.extract! session, :id, :checked_out_at, :checked_in_at, :usage, :unit

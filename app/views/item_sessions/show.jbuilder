@@ -1,0 +1,1 @@
+json.session @session, partial: 'item_session', as: :session

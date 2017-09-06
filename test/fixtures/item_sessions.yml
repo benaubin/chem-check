@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checked_out_at: 2017-09-05 20:58:43
+  checked_in_at: 2017-09-05 20:58:43
+  item: one
+  usage: 1
+  unit: 
+
+two:
+  checked_out_at: 2017-09-05 20:58:43
+  checked_in_at: 2017-09-05 20:58:43
+  item: two
+  usage: 1
+  unit: 
