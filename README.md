@@ -6,14 +6,17 @@ This is that app.
 
 ## Installation
 
-You don't need to install Ruby. Instead, Docker is used to make it work everywhere (even on your school's server).
+You don't need to install Ruby. Instead, we use Docker make sure the app works everywhere (probably even on your
+school's server).
+
+Install [Docker Compose].
 
 Clone this repository.
 
     $ git@github.com:benaubin/chem-check.git
     $ cd chem-check
     
-Startup Docker
+Startup the docker container.
 
     $ docker-compose up
 
@@ -26,6 +29,10 @@ Feel free to run it in the background.
 When you need to stop the server, run:
 
     $ docker-compose stop
+
+## Usage
+
+See [the documentation][docs] built into the server.
 
 ## Updating
 
@@ -44,6 +51,8 @@ And start the server.
 
     $ docker-compose up -d
     
-You should be up. If you need help, send [me] an email.
+You should be updated. If you need help, send [me] an email.
 
 [me]: git.io/aubin
+[Docker Compose]: https://docs.docker.com/compose/install/#install-compose
+[docs]: http://localhost:3000/docs

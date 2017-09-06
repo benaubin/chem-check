@@ -1,0 +1,92 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-2">
+      <nav id="docs-navbar" class="navbar navbar-light sticky-top">
+        <a class="navbar-brand" href="#top">Documentation</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link" href="#basics">Basics</a>
+          <a class="nav-link" href="#measurements">Measurements</a>
+        </nav>
+      </nav>
+    </div>
+    <div class="col-10" data-spy="scroll" data-target="#docs-navbar">
+      <div class="row" id="top">
+        <div class="col-12"><h1>Chem Check Documentation</h1></div>
+        <p class="lead col-12">
+          ChemCheck is a cool solution for managing an inventory. I built it for my school's chemical storage - they wanted
+          to have be able to track chemicals as they are used - from check in to check out. Basically, they've set up a
+          barcode scanner that will allow students to scan barcodes and enter in the amount of things they used. ChemCheck
+          provides the api and web dashboard for this.
+        </p>
+      </div>
+      <div class="row" id="basics">
+        <div class="col-12"><h2>Basics</h2></div>
+        <p class="lead col-12">
+          ChemCheck consists of 3 basic models: Items, ItemSessions and <abbr title="Stock Keeping Unit" class="initialism">SKU</abbr>s.
+        </p>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-6 mt-2">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Item</h4>
+                  <p class="card-text">
+                    An item is a physical representation of an SKU. It has a measurement and can be checked out.
+                  </p>
+                  <p class="card-text">
+                    For example, a 5g container of sodium.
+                  </p>
+                  <%= link_to 'Admin', admin_items_path, class: 'card-link' %>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mt-2">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">SKU</h4>
+                  <p class="card-text">
+                    A SKU is a type of thing that can be checked out.
+                  </p>
+                  <p class="card-text">
+                    For example, sodium.
+                  </p>
+                  <%= link_to 'Admin', admin_skus_path, class: 'card-link' %>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 mt-2">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Item Session</h4>
+                  <p class="card-text">
+                    An item session represents a period where an item is checked out. It starts and ends and has a usage of
+                    the item.
+                  </p>
+                  <p class="card-text">
+                    For example, that time I used 2kg of sodium.
+                  </p>
+                  <%= link_to 'Admin', admin_item_sessions_path, class: 'card-link' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3" id="measurements">
+        <div class="col-12"><h2>Measurements</h2></div>
+        <p class="col-8 lead">
+          We use <a href="https://github.com/joshwlewis/unitwise">Unitwise</a>, allowing us to easily use measurements.
+          It automatically converts them (so you can use 5cm of a 12" roll of tape)
+        </p>
+        <p class="col-8 lead">
+          A measurement is consisted of a value and a unit.
+        </p>
+        <p class="col-8 lead">
+          Make sure to pick your unit with the precision limitations in mind. Item measurements have a max 12 digits of
+          precision with upto 6 digits after the decimal point. Item sessions have a max of 9 digits with upto 3 after
+          the decimal.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

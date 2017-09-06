@@ -12,8 +12,9 @@ gem 'rails', '~> 5.1'
 gem 'pg', '~> 0.21'
 # Use Puma as the app server
 gem 'puma', '~> 3.10'
-# Use SCSS for stylesheets
+# Use Bbootstrap & SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap', '~> 4.0.0.beta'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 3.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -58,4 +59,3 @@ gem "administrate"
 gem "barby"
 gem "chunky_png"
 
-gem 'devise'

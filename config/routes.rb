@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'documentation/index'
+
   namespace :admin do
     resources :items
     resources :item_sessions
@@ -20,6 +22,10 @@ Rails.application.routes.draw do
         end
       end
     end
+  end
+
+  scope :docs do
+    root to: "documentation#index"
   end
 
   root to: "admin/items#index"
