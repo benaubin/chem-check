@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require selectize/standalone/selectize
 //= require handlebars.runtime
 //= require_tree ./templates
@@ -22,7 +22,7 @@
 
 var itemTemplate = HandlebarsTemplates['item'];
 
-$(function(){
+$(document).on("turbolinks:load", function(){
   var renderItemElement = function(itemData){
     var item = itemData;
     var itemEl = $(itemTemplate({item: item}));
