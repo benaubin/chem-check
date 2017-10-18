@@ -1,5 +1,5 @@
 class ItemSessionsController < ApplicationController
-  before_action :set_item_by_code
+  before_action :set_item_by_code, except: [:client, :search]
   before_action :set_session, only: [:show, :update]
 
   skip_before_action :verify_authenticity_token
@@ -10,6 +10,15 @@ class ItemSessionsController < ApplicationController
   end
 
   def show; end
+
+  def client
+
+  end
+
+  def search
+    results = params[:q].empty? ? SKU.first(10) : SKU.search(params[:q])
+    render json: {skus: results.map{ |sku| {name: sku.name, id: sku.id} }}
+  end
 
   def create
     @session = @item.item_sessions.create(session_params)

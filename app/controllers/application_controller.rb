@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
 
     render status: 404, text: '' if @item.nil?
   end
+
+  def set_sku_by_id
+    @sku = SKU.find(params[:id])
+
+    render status: 404, text: '' if @sku.nil?
+  end
 end

@@ -11,6 +11,7 @@ class ItemDashboard < Administrate::BaseDashboard
     sku: Field::BelongsTo,
     id: Field::String.with_options(searchable: false),
     barcode: BarcodeField,
+    details: Field::Text,
     code: Field::String,
     amount: Field::Number,
     unit: Field::String,
@@ -41,6 +42,7 @@ class ItemDashboard < Administrate::BaseDashboard
     :id,
     :checked_out?,
     :code,
+    :details,
     :barcode,
     :measurement,
     :item_sessions,
@@ -54,6 +56,7 @@ class ItemDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :sku,
     :code,
+    :details,
     :amount,
     :unit,
   ].freeze

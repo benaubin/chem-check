@@ -46,9 +46,6 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '~> 3.5'
   gem 'listen', '~> 3.1', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', "~> 2.0"
-  gem 'spring-watcher-listen', '~> 2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -59,3 +56,10 @@ gem "administrate"
 gem "barby"
 gem "chunky_png"
 
+gem "pg_search"
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-selectize'
+end
+
+gem 'handlebars_assets'

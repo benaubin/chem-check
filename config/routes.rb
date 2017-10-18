@@ -24,10 +24,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :skus, only: :show
+
+  get "/search" => "item_sessions#search"
+
   scope :docs do
     root to: "documentation#index"
   end
 
-  root to: "admin/items#index"
+  root to: "item_sessions#client"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

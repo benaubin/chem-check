@@ -1,0 +1,1 @@
+json.sku @sku, partial: 'sku', as: :sku

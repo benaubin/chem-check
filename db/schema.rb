@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906152212) do
+ActiveRecord::Schema.define(version: 20171018152920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,18 @@ ActiveRecord::Schema.define(version: 20170906152212) do
     t.citext "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "details"
     t.index ["code"], name: "index_items_on_code", unique: true
     t.index ["sku_id"], name: "index_items_on_sku_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "skus", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

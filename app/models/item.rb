@@ -6,10 +6,10 @@ require 'barby/barcode/code_128'
 # for example, a can of chemicals
 class Item < ApplicationRecord
   belongs_to :sku, required: true
-
   has_many :item_sessions
 
   validates :code, uniqueness: true
+
 
   class <<self
     def total_amount
@@ -34,6 +34,10 @@ class Item < ApplicationRecord
     return nil if unit.empty?
 
     Unitwise(amount, unit)
+  end
+
+  def measurement_str
+    measurement.to_s
   end
 
   def measurement=(m)

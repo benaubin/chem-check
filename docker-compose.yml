@@ -15,3 +15,4 @@ services:
     volumes:
       - .:/myapp
       - ./bundle:/usr/local/bundle
+    image: penne12/chem-check

@@ -6,4 +6,12 @@ class SKU < ApplicationRecord
   has_many :items
 
   delegate :total_amount, to: :items
+
+  include PgSearch
+
+  pg_search_scope :search, against: [
+      [:name, 'A']
+  ], using: {
+      tsearch: {prefix: true}
+  }
 end

@@ -1,0 +1,21 @@
+<div class="card{{#if item.checkedOut}} bg-light{{/if}}">
+    <h4 class="card-header">{{item.code}}</h4>
+    <div class="card-body">
+        <a href="{{item.barcode}}"><img src="{{item.barcode}}" height="50px" width="100%"/></a>
+
+        <p class="mt-2">{{item.details}}</p>
+
+        {{#if item.checkedOut}}
+            <div class="input-group">
+                <input type="text" class="form-control usage" placeholder="usage" aria-label="Usage in {{item.unit}}">
+                <span class="input-group-addon">{{item.unit}}</span>
+            </div>
+            <button class="btn btn-primary check-in">Check In</button>
+        {{else}}
+            <button class="btn btn-primary check-out">Check Out</button>
+        {{/if}}
+    </div>
+    <div class="card-footer text-muted">
+        {{item.measurementStr}}
+    </div>
+</div>
