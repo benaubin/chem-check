@@ -1,6 +1,12 @@
-<pre class="request">
-curl -X "{{method}}" "{{url}}" \
-    -H "Accept: application/json"{{#if data}} \
-    -H "Content-Type: application/json; charset=utf-8" \
-    -d $'{{data}}'{{/if}}
-</pre>
+<div class="exchange">
+    <pre class="request">
+    curl -X "{{method}}" "{{url}}" \
+        -H "Accept: application/json"{{#if data}} \
+        -H "Content-Type: application/json; charset=utf-8" \
+        -d $'{{data}}'{{/if}}
+    </pre>
+    <div class="response">
+        <div>Response</div>
+        <progress indeterminate></progress>
+    </div>
+</div>

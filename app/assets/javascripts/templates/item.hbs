@@ -1,4 +1,4 @@
-<div class="card{{#if item.checkedOut}} bg-light{{/if}}">
+<div class="card{{#if item.checkedOut}} bg-light{{/if}} item-{{item.id}}">
     <h4 class="card-header">{{item.code}}</h4>
     <div class="card-body">
         <a href="{{item.barcode}}"><img src="{{item.barcode}}" height="50px" width="100%"/></a>

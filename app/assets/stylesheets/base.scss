@@ -11,11 +11,30 @@
   height: 80vh;
   overflow: scroll;
 
-  .request {
-    background-color: #3a4b5c;
-    color: white;
+  .exchange {
+    .request {
+      background-color: #3a4b5c;
+      color: white;
 
-    padding: 5px;
-    border-radius: 5px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .response {
+      max-height: 40px;
+      overflow: hidden;
+      &:hover {
+        max-height: 500px;
+        overflow: scroll;
+      }
+      transition: max-height 350ms cubic-bezier(.17,.67,.83,.67);
+    }
+
+    &:first-child {
+      .response {
+        max-height: 500px;
+        overflow: scroll;
+      }
+    }
   }
 }

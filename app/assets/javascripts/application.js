@@ -27,17 +27,28 @@ var skuOptionTemplate = HandlebarsTemplates['sku-option'];
 $(document).on("turbolinks:load", function(){
 
   var apiRequest = function(url, method, data){
-    var requestEl = $(curlTemplate({
+    var exchangeEl = $(curlTemplate({
       url: location.origin + url,
       method: method,
       data: JSON.stringify(data, true, 4)
     }));
 
-    $('.request-log').append(requestEl);
+    $('.request-log').prepend(exchangeEl);
 
-    return $.ajax(url, {
-      method: method,
-      data: data
+    return new Promise(function(resolve, reject){
+      $.ajax(url, {
+        method: method,
+        data: data,
+        success: resolve,
+        error: reject
+      });
+    }).then(function(data){
+      var response = $("<pre>").text(JSON.stringify(data, true, 4));
+
+      exchangeEl.find(".response progress").after(response).hide('fast');
+      response.show('slow');
+
+      return data;
     });
   };
 
@@ -51,9 +62,7 @@ $(document).on("turbolinks:load", function(){
 
       apiRequest("/items/" + item.code + "/sessions", "POST", {
         checked_out_at: (new Date()).toISOString()
-      }).then(function(sessionData, status){
-        if(status !== "success") throw status;
-
+      }).then(function(sessionData){
         var session = sessionData.session;
 
         item.checkedOut = true;
@@ -74,8 +83,7 @@ $(document).on("turbolinks:load", function(){
 
       console.log("check in", item, checkInData);
 
-      apiRequest("/items/" + item.code + "/sessions/" + item.session, "PUT", checkInData).then(function(sessionData, status){
-        if(status !== "success") throw status;
+      apiRequest("/items/" + item.code + "/sessions/" + item.session, "PUT", checkInData).then(function(sessionData){
 
         var session = sessionData.session;
 
