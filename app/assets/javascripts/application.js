@@ -21,8 +21,26 @@
 
 
 var itemTemplate = HandlebarsTemplates['item'];
+var curlTemplate = HandlebarsTemplates['curl'];
+var skuOptionTemplate = HandlebarsTemplates['sku-option'];
 
 $(document).on("turbolinks:load", function(){
+
+  var apiRequest = function(url, method, data){
+    var requestEl = $(curlTemplate({
+      url: location.origin + url,
+      method: method,
+      data: JSON.stringify(data, true, 4)
+    }));
+
+    $('.request-log').append(requestEl);
+
+    return $.ajax(url, {
+      method: method,
+      data: data
+    });
+  };
+
   var renderItemElement = function(itemData){
     var item = itemData;
     var itemEl = $(itemTemplate({item: item}));
@@ -31,7 +49,7 @@ $(document).on("turbolinks:load", function(){
       e.preventDefault();
       console.log("checkout", item);
 
-      $.post("/items/" + item.code + "/sessions", {
+      apiRequest("/items/" + item.code + "/sessions", "POST", {
         checked_out_at: (new Date()).toISOString()
       }).then(function(sessionData, status){
         if(status !== "success") throw status;
@@ -56,10 +74,7 @@ $(document).on("turbolinks:load", function(){
 
       console.log("check in", item, checkInData);
 
-      $.ajax("/items/" + item.code + "/sessions/" + item.session, {
-        method: "PUT",
-        data: checkInData
-      }).then(function(sessionData, status){
+      apiRequest("/items/" + item.code + "/sessions/" + item.session, "PUT", checkInData).then(function(sessionData, status){
         if(status !== "success") throw status;
 
         var session = sessionData.session;
@@ -79,15 +94,7 @@ $(document).on("turbolinks:load", function(){
     searchField: 'name',
     create: false,
     preload: true,
-    render: {
-      option: function(item, escape) {
-        return '<div>' +
-          '<span class="title">' +
-            '<span class="name">' + escape(item.name) +
-          '</span>' +
-        '</div>';
-      }
-    },
+    render: { option: skuOptionTemplate },
     load: function(query, callback) {
       $.ajax({
         url: '/search?q=' + encodeURIComponent(query),
@@ -108,9 +115,7 @@ $(document).on("turbolinks:load", function(){
       return;
     }
 
-    fetch("/skus/" + value).then(function(res){
-      return res.json();
-    }).then(function(data){
+    apiRequest("/skus/" + value, "GET").then(function(data){
       console.log(data);
 
       var sku = data.sku;

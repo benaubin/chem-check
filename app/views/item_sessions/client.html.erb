@@ -1,18 +1,27 @@
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <div class="row">
-        <div class="input-group">
-          <select style="width: 100%" id="select-sku" title="sku"></select>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-6 col-md-8 col-11 ml-lg-auto mr-lg-5">
+          <div class="row">
+            <div class="input-group">
+              <select style="width: 100%" id="select-sku" title="sku"></select>
+            </div>
+          </div>
+          <div class="row mt-5" id="sku" style="display: none;">
+            <div class="col-12" id="sku-header">
+              <h3 id="sku-name"></h3>
+              <div class="text-muted">sku</div>
+            </div>
+            <div class="col-12 mt-3">
+              <div class="card-columns" id="items-grid"></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row mt-5" id="sku" style="display: none;">
-        <div class="col-12" id="sku-header">
-          <h3 id="sku-name"></h3>
-          <div class="text-muted">sku</div>
-        </div>
-        <div class="col-12 mt-3">
-          <div class="card-columns" id="items-grid"></div>
+        <div class="col-4 d-none d-lg-block">
+          <h3>Requests</h3>
+          <div class="request-log mt-5">
+          </div>
         </div>
       </div>
     </div>

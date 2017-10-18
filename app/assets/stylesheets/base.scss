@@ -4,3 +4,18 @@
 #sku-name {
   margin-bottom: -.2em;
 }
+
+.request-log {
+  font-size: 10px;
+
+  height: 80vh;
+  overflow: scroll;
+
+  .request {
+    background-color: #3a4b5c;
+    color: white;
+
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
